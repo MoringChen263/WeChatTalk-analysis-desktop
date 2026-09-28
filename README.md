@@ -1,14 +1,36 @@
 # 狗头军师 · 微信对话分析台（jev-chat-analyzer）
 
-一个 Windows 桌面对话分析程序，形态与打包方式参照 `D:\Jev\jev-chat-windows-v0.1.9`
-（PySide6 + PyFluentWidgets + PyInstaller one-dir 打包），核心能力由两部分拼接：
+一个 Windows 桌面对话分析程序（PySide6 + PyFluentWidgets + PyInstaller one-dir 打包），核心能力由两部分拼接：
 
 1. **微信对话采集**：窗口截图 + OCR（`windows_capture` + `rapidocr_onnxruntime`，依赖与 jev-chat-windows 一致），同时支持导入导出文件。
-2. **狗头军师 skill 分析**：加载 `D:\Jev\goutoujunshi` 的 `SKILL.md` + 按需 `references/` 知识文件，注入 OpenAI 兼容 LLM，输出五步分析 + 可复制话术卡。
+2. **狗头军师 skill 分析**：加载 `skills/goutoujunshi/` 的 `SKILL.md` + 按需 `references/` 知识文件，注入 OpenAI 兼容 LLM，输出五步分析 + 可复制话术卡。
 
 > 关键前提：goutoujunshi 的回复文案必须由**生成式 LLM** 产出。
 > jev-chat-windows 内置的 Laya 只会输出结构化判定/概率（不会生成文本），
 > 所以本项目中 Laya 只做**可选辅助信号**，不作为回复引擎。
+
+---
+
+## 0. 快速开始
+
+```bash
+git clone https://github.com/MoringChen263/jev-chat-analyzer.git
+cd jev-chat-analyzer
+git submodule update --init --recursive   # 必须：分析功能依赖 goutoujunshi skill
+```
+
+`skills/goutoujunshi` 以 git submodule 指向独立仓库，**跳过上面第二条命令会导致分析时找不到 skill 文件**。
+
+依赖与打包：
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+分析功能需要自备 LLM 接口（DeepSeek 等 OpenAI 兼容端点），在界面里填入 API Key 后使用；
+仓库内不含任何密钥，`config.example.json` 只是示例模板。
 
 ---
 
@@ -65,7 +87,7 @@
 建议工程结构：
 
 ```
-D:\Jev\jev-chat-analyzer\
+jev-chat-analyzer\
 ├── README.md
 ├── pyproject.toml / requirements.txt
 ├── config.example.json
@@ -183,9 +205,11 @@ D:\Jev\jev-chat-analyzer\
   "transcript": { "max_messages": 60, "token_budget": 3500 },
   "analysis": { "question_type": "default", "style_note": "" },
   "memory": { "enabled": false, "max_context_chars": 4000 },
-  "laya": { "enabled": false, "model_dir": "D:/Jev/jev-chat-windows-v0.1.9/laya" }
+  "laya": { "enabled": false, "model_dir": "" }
 }
 ```
+
+`laya.model_dir` 留空即不加载（Laya 只是可选辅助信号，不参与回复生成）。
 
 ## 9. 打包（仿 jev-chat-windows-v0.1.9）
 
