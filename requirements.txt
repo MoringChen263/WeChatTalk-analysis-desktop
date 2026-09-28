@@ -1,6 +1,5 @@
 # ASCII only: pip on Chinese Windows decodes this file as GBK and chokes on UTF-8 comments.
-# 版本锁定（不写 >=），与 D:\Jev\jev-chat-windows-v0.1.9 / jev-chat-src 对齐。
-# 实测可用的组合见 D:\Jev\jev-chat-src\.venv（Python 3.11.9）。
+# 版本锁定（不写 >=）。实测可用的组合见同级目录的 .venv（Python 3.11.9）。
 
 # --- UI ---
 PySide6-Fluent-Widgets==1.11.3

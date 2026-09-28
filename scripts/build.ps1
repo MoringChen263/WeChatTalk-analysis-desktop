@@ -19,8 +19,8 @@ Set-Location $root
 
 function Resolve-Python {
     if ($env:JEV_PY -and (Test-Path $env:JEV_PY)) { return $env:JEV_PY }
-    $reuse = 'D:\Jev\jev-chat-src\.venv\Scripts\python.exe'
-    if (Test-Path $reuse) { return $reuse }
+    $sibling = Join-Path (Split-Path -Parent $root) 'jev-chat-src\.venv\Scripts\python.exe'
+    if (Test-Path $sibling) { return $sibling }
     $mine = Join-Path $root '.venv\Scripts\python.exe'
     if (Test-Path $mine) { return $mine }
     throw 'No python found.'

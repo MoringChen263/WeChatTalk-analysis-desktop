@@ -17,8 +17,8 @@ Set-Location $root
 function Resolve-Python {
     if ($env:JEV_PY -and (Test-Path $env:JEV_PY)) { return $env:JEV_PY }
     # Reuse the already-provisioned venv (PySide6 / windows-capture / rapidocr / pyinstaller).
-    $reuse = 'D:\Jev\jev-chat-src\.venv\Scripts\python.exe'
-    if (Test-Path $reuse) { return $reuse }
+    $sibling = Join-Path (Split-Path -Parent $root) 'jev-chat-src\.venv\Scripts\python.exe'
+    if (Test-Path $sibling) { return $sibling }
     $mine = Join-Path $root '.venv\Scripts\python.exe'
     if (Test-Path $mine) { return $mine }
     throw 'No python found. Set $env:JEV_PY or create .venv per requirements.txt'
