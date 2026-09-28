@@ -11,7 +11,32 @@
 
 ---
 
-## 0. 快速开始
+## 0. 下载使用
+
+### 方式 A：直接下载程序包（推荐，无需 Python 环境）
+
+1. 打开 [Releases 页面](https://github.com/MoringChen263/jev-chat-analyzer/releases/latest)。
+2. 在 **Assets** 里下载 `jev-chat-analyzer-v0.1.0-win64-*.zip`（约 126 MB）。
+3. **解压到任意目录**。压缩包根目录**就是**应用目录，解压后应直接看到 `jev-chat-analyzer.exe`，不要再套一层同名文件夹。
+4. 双击 `jev-chat-analyzer.exe` 启动。
+5. 首次使用需在界面设置里填入自己的 LLM API Key（DeepSeek / 任意 OpenAI 兼容端点）。
+
+> **Windows 安全提示**：首次启动若弹出「Windows 已保护你的电脑」（SmartScreen），
+> 点 **More info → Run anyway** 即可。该提示出现的原因是程序尚未取得微软签名证书，与程序本身无关。
+> 打包内不含任何密钥与聊天数据，运行时数据（含 API Key）只写入你本机用户目录，不会上传。
+
+**校验下载完整性**（建议在下载后做一次，可确认没有被下载工具截断）：
+
+Windows 自带命令行里执行（无需装任何工具）：
+
+```
+Get-FileHash -Algorithm SHA256 .\jev-chat-analyzer-v0.1.0-win64-*.zip
+```
+
+Release 页面的 Assets 里会显示该附件的 SHA256，两者一致即为完整文件。
+若解压后找不到 `jev-chat-analyzer.exe`，说明压缩包被多套了一层目录，重新解压一次即可。
+
+### 方式 B：从源码运行 / 二次开发
 
 ```bash
 git clone https://github.com/MoringChen263/jev-chat-analyzer.git
