@@ -1,5 +1,13 @@
 # 狗头军师 · 微信对话分析台（jev-chat-analyzer）
 
+《《《关于项目命名（与 Jev 模型无关）
+仓库名 jev-chat-analyzer 里的 jev 只来自本机开发目录名 D:\Jev，与本仓库运行的任何模型都无关。为避免误解，说明如下：
+
+本工具从不调用 OpenRouter 上的 jev 系列模型，也从未集成过 Jev。默认且唯一的推理后端是 DeepSeek（OpenAI 兼容协议），API Key 由使用者在「设置」界面自行填写，密钥仅保存在本机。
+「jev」在这里的出处只有两处：开发时的父目录名，以及界面设计所参考的上游项目 jev-chat-windows。
+代码来源遵循 MIT 署名，详见 THIRD_PARTY_NOTICES.md：采集与引擎模块改写自 jev-chat-src（Copyright (c) 2026 rezoch340），分析思路来自开源项目「狗头军师」（MIT, powerycy），后者以 Git submodule 引入 skills/goutoujunshi。
+若你确实想换成 Jev 或其他模型，改动点是唯一的：替换 app/analysis/llm_client.py 里的请求封装即可，其余模块依赖的是它吐出的标准 JSON。》》》
+
 一个 Windows 桌面对话分析程序（PySide6 + PyFluentWidgets + PyInstaller one-dir 打包），核心能力由两部分拼接：
 
 1. **微信对话采集**：窗口截图 + OCR（`windows_capture` + `rapidocr_onnxruntime`，依赖与 jev-chat-windows 一致），同时支持导入导出文件。
