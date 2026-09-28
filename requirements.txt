@@ -1,0 +1,26 @@
+# ASCII only: pip on Chinese Windows decodes this file as GBK and chokes on UTF-8 comments.
+# 版本锁定（不写 >=），与 D:\Jev\jev-chat-windows-v0.1.9 / jev-chat-src 对齐。
+# 实测可用的组合见 D:\Jev\jev-chat-src\.venv（Python 3.11.9）。
+
+# --- UI ---
+PySide6-Fluent-Widgets==1.11.3
+PySideSix-Frameless-Window==0.8.2
+
+# --- 采集：窗口截图 + 离线 OCR ---
+windows-capture==2.0.1
+rapidocr-onnxruntime==1.4.4
+onnxruntime==1.30.0
+opencv-python==5.0.0.93
+numpy==2.4.6
+pillow==12.3.0
+
+# --- Windows 凭据 / 进程信息 ---
+pywin32==312
+pywin32-ctypes==0.2.3
+
+# --- LLM 调用：只用标准库 urllib，不引 requests/httpx/openai（见 README.optimized E18）---
+# 少一个直接依赖 = 少一份许可证与打包体积；SSE 解析与超时/取消循环自己写，已有 6 条路径的假服务器测试覆盖。
+
+# --- 打包 ---
+pyinstaller==6.22.3
+pyinstaller-hooks-contrib==2026.7.1

@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=65"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jev-chat-analyzer"
+version = "0.1.0"
+description = "WeChat conversation analyzer desktop app: OCR capture + goutoujunshi skill analysis"
+requires-python = ">=3.11,<3.12"
+license = { file = "LICENSE" }
+readme = "README.md"
+
+[project.optional-dependencies]
+laya = [
+    "torch==2.11.0",
+    "transformers==5.17.0",
+    "laya==0.3.5",
+]
+
+[tool.setuptools]
+packages = ["app", "app.capture", "app.analysis", "app.memory", "app.ui"]

@@ -1,0 +1,88 @@
+{
+  "config_version": 3,
+  "llm": {
+    "provider": "openai-compatible",
+    "base_url": "https://api.deepseek.com/v1",
+    "model": "deepseek-chat",
+    "api_key_ref": "env:JEV_LLM_API_KEY",
+    "temperature": 1.2,
+    "mode": "cloud",
+    "max_output_tokens": 4000,
+    "truncation_retry_max": 8000,
+    "request_timeout_s": 60,
+    "daily_cost_cap": 2.0,
+    "stream": true,
+    "structured_output": "auto",
+    "stream_read_timeout_s": 45,
+    "max_retries": 0,
+    "pricing": {}
+  },
+  "local_llm": {
+    "base_url": "http://127.0.0.1:11434/v1",
+    "model": "qwen2.5:7b",
+    "api_key_ref": ""
+  },
+  "capture": {
+    "target_process": ["Weixin.exe", "WeChat.exe"],
+    "title_hint": "微信",
+    "window_class_fallback": "",
+    "hwnd": 0,
+    "poll_ms": 5000,
+    "scroll_frames": 0,
+    "ocr_min_score": 0.9,
+    "dedup": {
+      "match_ratio": 0.85,
+      "dup_threshold": 0.15,
+      "k": 5
+    },
+    "speaker_map": {
+      "me": {
+        "side": "right",
+        "code": "me",
+        "confirmed": false
+      },
+      "objects": [
+        {
+          "code": "obj-1",
+          "side": "left",
+          "label": "对方"
+        }
+      ]
+    }
+  },
+  "transcript": {
+    "max_messages": 60,
+    "token_budget": 3500
+  },
+  "import": {
+    "max_messages": 2000
+  },
+  "memory": {
+    "enabled": false,
+    "max_context_chars": 4000,
+    "store_script": "skills/goutoujunshi/scripts/memory_store.py"
+  },
+  "analysis": {
+    "question_type": "default",
+    "max_references": 3,
+    "ref_chars": 9000,
+    "total_ref_chars": 24000,
+    "repair_retry": true,
+    "style_note": "",
+    "wide_context_multiplier": 2.0
+  },
+  "skill_source": "skills/goutoujunshi",
+  "laya": {
+    "enabled": false,
+    "model_dir": ""
+  },
+  "privacy": {
+    "screenshots_to_disk": false,
+    "log_chat_text": false,
+    "cloud_upload_confirmed": false
+  },
+  "update": {
+    "enabled": true,
+    "feed_url": ""
+  }
+}
